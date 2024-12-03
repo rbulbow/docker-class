@@ -7,16 +7,17 @@ LABEL author="Ronald Bulbow" \
 
 USER root
 
+SHELL [ "/usr/bin/bash", "-c" ]
+ENV SHELL=/usr/bin/bash
+
 RUN <<EOF
 apt update
-apt -y upgrade
-apt -y install elinks vim nano bash net-tools conntrack-tools coreutils curl wget \
-       drill iperf3 iproute2 iptables iputils ip6tables keepalived nftables socat \
-       bind-tools nc ethtool mtr tcpdump lshw nmap busybox-extras
+apt install -y elinks vim nano bash net-tools coreutils curl wget iperf3 iproute2 iptables keepalived \
+  nftables socat netcat-openbsd ethtool mtr tcpdump lshw nmap bind9-dnsutils busybox iputils-arping iputils-ping \
+  iputils-tracepath iptables
 apt autoclean
 apt autoremove
 EOF
 
-CMD bash
-
+CMD ["bash"]
 
